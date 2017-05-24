@@ -2,6 +2,10 @@
 iOS UILabel with link and underlined.
 
 Including IBinspectable for the url.
-Either you can add the url programatically:
 
+![LinkUILabel Storyboard example](https://github.com/icon48.png "Storyboard example")
+
+Either you can add the url programatically:
+```swift
 linkUILabel.url = "www.myurl.com"
+```
