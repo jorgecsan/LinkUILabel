@@ -1,11 +1,9 @@
 //
 //  LinkUILabel.swift
-//  Parc
 //
 //  Created by Jorge Cordero Sanchez on 18/5/17.
 //  Copyright © 2017 Jorge Cordero Sanchez. All rights reserved.
 //
-
 import UIKit
 
 @IBDesignable
@@ -23,11 +21,6 @@ class LinkUILabel: UILabel{
     override var text: String? {
         didSet {
             guard let text = text else { return }
-            let textRange = NSMakeRange(0, text.characters.count)
-            let attributedText = NSMutableAttributedString(string: text)
-            attributedText.addAttribute(NSAttributedString.Key.underlineStyle , value: NSUnderlineStyle.single.rawValue, range: textRange)
-            // Add other attributes if needed
-            self.attributedText = attributedText
         }
     }
     
@@ -40,7 +33,11 @@ class LinkUILabel: UILabel{
     }
     
     private func openUrl(urlString: String!) {
-        let url = URL(string: urlString)!
+        var url = URL(string: urlString)!
+        if(!urlString.starts(with: "http")){
+            url = URL(string: "http://" + urlString)!
+        }
+
         if #available(iOS 10.0, *) {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         } else {
@@ -52,4 +49,3 @@ class LinkUILabel: UILabel{
         self.openUrl(urlString: url)
     }
 }
-
